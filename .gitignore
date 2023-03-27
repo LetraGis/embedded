@@ -60,3 +60,4 @@ p*/.project
 *.launch
 *.ld
 *.txt
+/.metadata/
