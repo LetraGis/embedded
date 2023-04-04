@@ -1,3 +1,6 @@
 [submodule "drivers"]
 	path = drivers
 	url = https://github.com/LetraGis/drivers.git
+[submodule "cmsis_core"]
+	path = cmsis_core
+	url = https://github.com/STMicroelectronics/cmsis_core.git
