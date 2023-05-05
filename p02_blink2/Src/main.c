@@ -29,7 +29,7 @@ int main(void)
     /* Loop forever */
 	while(1)
 	{
-		uint32 index = 0;
+		uint32_t index = 0;
 		for(index = 0; index < 100000; index++);
 		Gpio_SetPinState(porta, 5, low);
 		for(index = 0; index < 100000; index++);
