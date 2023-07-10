@@ -66,137 +66,137 @@ int main(void)
 	while(1)
 	{
 		pinState pinLevel;
-		Gpio_SetPinState(porta, pin6, HIGH);
-		Gpio_SetPinState(porta, pin7, HIGH);
-		Gpio_SetPinState(porta, pin8, HIGH);
-		Gpio_SetPinState(porta, pin9, HIGH);
+		Gpio_SetPinState(porta, pin6, high);
+		Gpio_SetPinState(porta, pin7, high);
+		Gpio_SetPinState(porta, pin8, high);
+		Gpio_SetPinState(porta, pin9, high);
 
 		/* ********** First row ********** */
-		Gpio_SetPinState(porta, pin6, LOW);
+		Gpio_SetPinState(porta, pin6, low);
 		Gpio_GetPinStateRef(portc, pin9, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("1\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin10, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("2\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin11, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("3\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin12, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("A\n");
 		}
-		Gpio_SetPinState(porta, pin6, HIGH);
+		Gpio_SetPinState(porta, pin6, high);
 		/* ********** End of first row ********** */
 
 		/* ********** Second row ********** */
-		Gpio_SetPinState(porta, pin7, LOW);
+		Gpio_SetPinState(porta, pin7, low);
 		Gpio_GetPinStateRef(portc, pin9, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("4\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin10, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("5\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin11, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("6\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin12, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("B\n");
 		}
-		Gpio_SetPinState(porta, pin7, HIGH);
+		Gpio_SetPinState(porta, pin7, high);
 		/* ********** End of second row ********** */
 
 		/* ********** Third row ********** */
-		Gpio_SetPinState(porta, pin8, LOW);
+		Gpio_SetPinState(porta, pin8, low);
 		Gpio_GetPinStateRef(portc, pin9, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("7\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin10, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("8\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin11, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("9\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin12, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("C\n");
 		}
-		Gpio_SetPinState(porta, pin8, HIGH);
+		Gpio_SetPinState(porta, pin8, high);
 		/* ********** End of third row ********** */
 
 		/* ********** Forth row ********** */
-		Gpio_SetPinState(porta, pin9, LOW);
+		Gpio_SetPinState(porta, pin9, low);
 		Gpio_GetPinStateRef(portc, pin9, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("*\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin10, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("0\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin11, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("#\n");
 		}
 
 		Gpio_GetPinStateRef(portc, pin12, &pinLevel);
-		if(pinLevel == LOW)
+		if(pinLevel == low)
 		{
 			delay(DELAY);
 			printf("D\n");
 		}
-		Gpio_SetPinState(porta, pin9, HIGH);
+		Gpio_SetPinState(porta, pin9, high);
 		/* ********** End of forth row ********** */
 	} /* End of while loop */
 }

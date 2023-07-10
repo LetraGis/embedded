@@ -31,11 +31,11 @@ int main(void)
 
     while(1)
     {
-    	Gpio_SetPinState(porta, pin5, HIGH);
+    	Gpio_SetPinState(porta, pin5, high);
 
-    	while(Gpio_GetPinStateVal(portc, pin13) == LOW)
+    	while(Gpio_GetPinStateVal(portc, pin13) == low)
     	{
-    		Gpio_SetPinState(porta, pin5, LOW);
+    		Gpio_SetPinState(porta, pin5, low);
     	}
     }
 }
