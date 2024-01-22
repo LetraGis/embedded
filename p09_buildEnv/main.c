@@ -19,6 +19,8 @@
 #include<stdio.h>
 #include "other.h"
 
+extern void initialise_monitor_handles(void);
+
 const uint8_t constant_data = 200;
 uint32_t uninitialized_data;
 uint16_t initialized_data = 150;
@@ -26,6 +28,9 @@ uint16_t initialized_data = 150;
 int main(void)
 {
     Gpio_Init();
+	initialise_monitor_handles();
+	printf("Testing\n");
+	uint8_t flag = 0;
 
     while (1)
     {
@@ -35,10 +40,17 @@ int main(void)
 		if (GPIO_HIGH == inputButtonSt)
 		{
 			Gpio_SetPinState(GPIO_LOW);
+			flag = 1;
 		}
 		else
 		{
 			Gpio_SetPinState(GPIO_HIGH);
+			if (flag == 1)
+			{
+				printf("Pressing\n");
+				flag = 0;
+			}
+			
 		}
     }
 

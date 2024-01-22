@@ -27,6 +27,7 @@ MODULE TYPES
 DECLARATION OF LOCAL FUNCTIONS
 ******************************************************************************/
 int main(void);
+void __libc_init_array(void);
 
 void Default_Handler(void);
 void Reset_Handler(void);
@@ -141,6 +142,7 @@ extern uint32_t _sbss;
 extern uint32_t _edata;
 extern uint32_t _sdata;
 extern uint32_t _etext;
+extern uint32_t _la_data;
 
 /******************************************************************************
 DEFINITION OF LOCAL CONSTANT DATA
@@ -291,7 +293,7 @@ void Reset_Handler(void)
     /* Destination is SRAM memory */
     uint8_t *pDest = (uint8_t *)&_sdata;
     /* Source is Flash memory */
-    uint8_t *pSrc = (uint8_t *)&_etext;
+    uint8_t *pSrc = (uint8_t *)&_la_data;
 
     /* Copies content from Flash to RAM */
     for (uint32_t i = 0; i < section_size; i++)
@@ -308,6 +310,8 @@ void Reset_Handler(void)
     {
         *pDest++ = 0; 
     }
+
+    __libc_init_array();
 
     /* Branches to main() */
     main();

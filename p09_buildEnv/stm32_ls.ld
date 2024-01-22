@@ -20,8 +20,12 @@ SECTIONS
         *(.isr_vector)
         /* Merge all .text section of all input files */
         *(.text)
+        *(.text.*)
+        *(.init)
+        *(.fini)
         /* Merge all .rodata section of all input files */
         *(.rodata)
+        *(.rodata.*)
         /* Code should be aligned to natural size boudaries for instruction
            fetching.
         */
@@ -33,12 +37,15 @@ SECTIONS
         _etext = .;
     } >FLASH AT>FLASH /* First parameter specifies  */
 
+    _la_data = LOADADDR(.data);
+
     /* This section should include .data section of all input files */
     .data :
     {
         _sdata = .;
         /* Merge all .data section of all input files */
         *(.data)
+        *(.data.*)
         /* Code should be aligned to natural size boudaries for instruction
            fetching.
         */
@@ -51,11 +58,21 @@ SECTIONS
     .bss :
     {
         _sbss = .;
+        /* Below symbol is needed by the std lib: nano-libc */
+        __bss_start__ = _sbss;
         *(.bss)
+        *(.bss.*)
         /* Code should be aligned to natural size boudaries for instruction
            fetching.
         */
         . = ALIGN(4);
         _ebss = .;
+        /* Below symbol is needed by the std lib: nano-libc */
+        __bss_end__ = _ebss;
+        . = ALIGN(4);
+        /* Below symbol is needed by the std lib: nano-libc */
+        end = .;
+        /* Below symbol is needed by semi hosting lib: rdimon */
+        __end__ = .;
     }> SRAM 
 }
