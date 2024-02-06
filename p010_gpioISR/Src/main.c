@@ -37,11 +37,11 @@ int main(void)
 	SysCfg_ExtIntCfg(portc, pin13);
 
 	/* Edge detection is set for selected pin */
-	EXIT_EdgeDetection(falling, pin13);
+	EXTI_EdgeDetection(falling, pin13);
 	/* Out of the 23 sources of interrupt, pin 13 is enabled */
-	EXIT_ISRMaskBitSet(pin13);
+	EXTI_SetISRMaskBit(pin13);
 
-	/* We enable EXIT15_10 interrupt in the NVIC peripheral */
+	/* We enable EXTI15_10 interrupt in the NVIC peripheral */
 	NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 	/* Loop forever */
@@ -69,10 +69,10 @@ void delay(void)
 void EXTI15_10_IRQHandler(void)
 {
 	/* Check for the Pending bit on the Pending Register */
-    if(high == EXIT_PendISRReadBit(pin13))
+    if(high == EXTI_ReadPendISRBit(pin13))
     {
         /* Clear pin */
-        EXIT_PendISRClearBit(pin13);
+        EXTI_ClearPendISRBit(pin13);
     }
 	/* We raise the flag that will be fetch in the while loop */
     g_button_pressed = 1;

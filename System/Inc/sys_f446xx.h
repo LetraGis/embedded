@@ -56,7 +56,7 @@ DECLARATION OF FUNCTIONS
  ******************************************************************************/
 __STATIC_INLINE void __SysCfg_Init(void)
 {
-	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN_Msk;
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 }
 
 /*!****************************************************************************
@@ -92,7 +92,7 @@ __STATIC_INLINE void __SysCfg_ExtIntCfg(portNumber port, pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXIT_EdgeDetection(EXTI_EdgeDetection edge, pinNumber pin)
+__STATIC_INLINE void __EXTI_EdgeDetection(EXTI_EdgeDetection edge, pinNumber pin)
 {
 	if(rising == edge)
 	{
@@ -115,7 +115,7 @@ __STATIC_INLINE void __EXIT_EdgeDetection(EXTI_EdgeDetection edge, pinNumber pin
  * @return         	1       If there is a Pending ISR on that particular pin
  *                  0       If there is no Pending ISR.	
  ******************************************************************************/
-__STATIC_INLINE uint8_t __EXIT_PendISRReadBit(pinNumber pin)
+__STATIC_INLINE uint8_t __EXTI_ReadPendISRBit(pinNumber pin)
 {
 	return((uint8_t)((EXTI->PR >> pin) & 1u));
 }
@@ -127,7 +127,7 @@ __STATIC_INLINE uint8_t __EXIT_PendISRReadBit(pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXIT_PendISRClearBit(pinNumber pin)
+__STATIC_INLINE void __EXTI_ClearPendISRBit(pinNumber pin)
 {
 	EXTI->PR |= (1 << pin);
 }
@@ -140,7 +140,7 @@ __STATIC_INLINE void __EXIT_PendISRClearBit(pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXIT_ISRMaskBitSet(pinNumber pin)
+__STATIC_INLINE void __EXTI_SetISRMaskBit(pinNumber pin)
 {
 	EXTI->IMR |= (1 << pin);
 }
@@ -149,10 +149,10 @@ DECLARATION OF FUNCTION-LIKE MACROS
 ******************************************************************************/
 #define SysCfg_Init 		    __SysCfg_Init
 #define SysCfg_ExtIntCfg	    __SysCfg_ExtIntCfg
-#define EXIT_EdgeDetection      __EXIT_EdgeDetection
-#define EXIT_PendISRReadBit     __EXIT_PendISRReadBit
-#define EXIT_PendISRClearBit    __EXIT_PendISRClearBit
-#define EXIT_ISRMaskBitSet      __EXIT_ISRMaskBitSet
+#define EXTI_EdgeDetection      __EXTI_EdgeDetection
+#define EXTI_ReadPendISRBit     __EXTI_ReadPendISRBit
+#define EXTI_ClearPendISRBit    __EXTI_ClearPendISRBit
+#define EXTI_SetISRMaskBit      __EXTI_SetISRMaskBit
 
 /******************************************************************************
 End Of File
