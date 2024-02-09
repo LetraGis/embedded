@@ -16,6 +16,7 @@ EXTERNAL DEPENDENCIES
 #include "stdint.h"
 #include "rtos.h"
 #include "gpio.h"
+#include "spi.h"
 
 /******************************************************************************
 DEFINITION OF CONSTANTS

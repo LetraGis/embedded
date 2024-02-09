@@ -118,9 +118,59 @@ void Gpio_InitCallback(void)
 {
 	/* Pin 5 of Port A is connected to On-Board Green LED */
 	/* Pin 13 of Port C is connected to On-Board User Button */
-	(void)Gpio_PortInit(porta);
-	(void)Gpio_PinMode(porta, pin5, output);
-	(void)Gpio_PinMode(porta, pin6, output);
+	// (void)Gpio_PortInit(porta);
+	// (void)Gpio_PinMode(porta, pin5, output);
+	// (void)Gpio_PinMode(porta, pin6, output);
+	/* SPI Related Configuration */
+	Gpio_PortInit(porta);
+	Gpio_PinMode(porta, pin4, alternate);
+	Gpio_PinMode(porta, pin5, alternate);
+	Gpio_PinMode(porta, pin6, alternate);
+	Gpio_PinMode(porta, pin7, alternate);
+
+	Gpio_ConfigAltFnc(porta, pin4, altFun5);
+	Gpio_ConfigAltFnc(porta, pin5, altFun5);
+	Gpio_ConfigAltFnc(porta, pin6, altFun5);
+	Gpio_ConfigAltFnc(porta, pin7, altFun5);
+
+	Gpio_OutputType(porta, pin4, pushPull);
+	Gpio_OutputType(porta, pin5, pushPull);
+	Gpio_OutputType(porta, pin6, pushPull);
+	Gpio_OutputType(porta, pin7, pushPull);
+
+	Gpio_PullMode(porta, pin4, none);
+	Gpio_PullMode(porta, pin5, none);
+	Gpio_PullMode(porta, pin6, none);
+	Gpio_PullMode(porta, pin7, none);
+
+	Gpio_OutputSpeed(porta, pin4, highSpeed);
+	Gpio_OutputSpeed(porta, pin5, highSpeed);
+	Gpio_OutputSpeed(porta, pin6, highSpeed);
+	Gpio_OutputSpeed(porta, pin7, highSpeed);
+}
+
+/*!****************************************************************************
+ * @brief			Initializes SPI.
+ * @details		   	Initializes SPI. Implementation is up to the developer. For
+ * 					the example, SPI1 Configuration Register 1 is configured,
+ * 					and SPI1 Peripheral 1 is enabled.
+ * @param[in]      	void    No input parameters.
+ * @return         	void    No output parameters.
+ ******************************************************************************/
+void Spi_InitCallback(void)
+{	
+	SPI1_ENABLE();
+	Spi_Config1Type spi1cfg1;
+	spi1cfg1.Bytes = 0;
+	spi1cfg1.Fields.BIDIMODE = twoLineUni;
+	spi1cfg1.Fields.BR = pclkDivBy256;
+	spi1cfg1.Fields.CPHA = firstEdge;
+	spi1cfg1.Fields.CPOL = clkPolHighIdle;
+	spi1cfg1.Fields.DFF = oneByte;
+	spi1cfg1.Fields.MSTR = spiMaster;
+	spi1cfg1.Fields.SSM = swMgtEnabled;
+
+	Spi_Config_CR1(SPI_1, spi1cfg1.Bytes);
 }
 
 /*!****************************************************************************

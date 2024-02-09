@@ -15,6 +15,7 @@ EXTERNAL DEPENDENCIES
 #include "stm32f446xx.h" /* CMSIS interfaces for STM32F446RE */
 #include "stdint.h"
 #include "gpio.h"
+#include "spi.h"
 
 /******************************************************************************
 DEFINITION OF CONSTANTS
