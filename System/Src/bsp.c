@@ -133,10 +133,10 @@ void Gpio_InitCallback(void)
 	Gpio_ConfigAltFnc(porta, pin6, altFun5);
 	Gpio_ConfigAltFnc(porta, pin7, altFun5);
 
-	Gpio_OutputType(porta, pin4, pushPull);
-	Gpio_OutputType(porta, pin5, pushPull);
-	Gpio_OutputType(porta, pin6, pushPull);
-	Gpio_OutputType(porta, pin7, pushPull);
+	Gpio_OutputTypeCfg(porta, pin4, pushPull);
+	Gpio_OutputTypeCfg(porta, pin5, pushPull);
+	Gpio_OutputTypeCfg(porta, pin6, pushPull);
+	Gpio_OutputTypeCfg(porta, pin7, pushPull);
 
 	Gpio_PullMode(porta, pin4, none);
 	Gpio_PullMode(porta, pin5, none);

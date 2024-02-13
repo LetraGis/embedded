@@ -68,7 +68,7 @@ __STATIC_INLINE void __SysCfg_Init(void)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __SysCfg_ExtIntCfg(portNumber port, pinNumber pin)
+__STATIC_INLINE void __SysCfg_ExtIntCfg(Gpio_portNumber port, Gpio_pinNumber pin)
 {
 	/* By dividing the pin by SYSCFG_EXTI_NUM_REGS, we will know the register 
 	   to be modified. E.g. if pin is 13, we will divide 13 by (4), which 
@@ -93,7 +93,7 @@ __STATIC_INLINE void __SysCfg_ExtIntCfg(portNumber port, pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXTI_EdgeDetection(EXTI_EdgeDetection edge, pinNumber pin)
+__STATIC_INLINE void __EXTI_EdgeDetection(EXTI_EdgeDetection edge, Gpio_pinNumber pin)
 {
 	if(rising == edge)
 	{
@@ -116,7 +116,7 @@ __STATIC_INLINE void __EXTI_EdgeDetection(EXTI_EdgeDetection edge, pinNumber pin
  * @return         	1       If there is a Pending ISR on that particular pin
  *                  0       If there is no Pending ISR.	
  ******************************************************************************/
-__STATIC_INLINE uint8_t __EXTI_ReadPendISRBit(pinNumber pin)
+__STATIC_INLINE uint8_t __EXTI_ReadPendISRBit(Gpio_pinNumber pin)
 {
 	return((uint8_t)((EXTI->PR >> pin) & 1u));
 }
@@ -128,7 +128,7 @@ __STATIC_INLINE uint8_t __EXTI_ReadPendISRBit(pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXTI_ClearPendISRBit(pinNumber pin)
+__STATIC_INLINE void __EXTI_ClearPendISRBit(Gpio_pinNumber pin)
 {
 	EXTI->PR |= (1 << pin);
 }
@@ -141,7 +141,7 @@ __STATIC_INLINE void __EXTI_ClearPendISRBit(pinNumber pin)
  * @param[in]      	pin		Holds the pin that will trigger External Interrupt
  * @return         	void	No output parameters.
  ******************************************************************************/
-__STATIC_INLINE void __EXTI_SetISRMaskBit(pinNumber pin)
+__STATIC_INLINE void __EXTI_SetISRMaskBit(Gpio_pinNumber pin)
 {
 	EXTI->IMR |= (1 << pin);
 }

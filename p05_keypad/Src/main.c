@@ -65,7 +65,7 @@ int main(void)
     /* Loop forever */
 	while(1)
 	{
-		pinState pinLevel;
+		Gpio_pinState pinLevel;
 		Gpio_SetPinState(porta, pin6, high);
 		Gpio_SetPinState(porta, pin7, high);
 		Gpio_SetPinState(porta, pin8, high);
