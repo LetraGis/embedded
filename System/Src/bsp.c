@@ -116,11 +116,10 @@ void OS_onIdle_Callback(void)
  ******************************************************************************/
 void Gpio_InitCallback(void)
 {
-	/* Pin 5 of Port A is connected to On-Board Green LED */
 	/* Pin 13 of Port C is connected to On-Board User Button */
-	// (void)Gpio_PortInit(porta);
-	// (void)Gpio_PinMode(porta, pin5, output);
-	// (void)Gpio_PinMode(porta, pin6, output);
+	(void)Gpio_PortInit(portc);
+	(void)Gpio_PinMode(portc, pin13, input);
+
 	/* SPI Related Configuration */
 	Gpio_PortInit(porta);
 	Gpio_PinMode(porta, pin4, alternate);
@@ -163,12 +162,12 @@ void Spi_InitCallback(void)
 	Spi_Config1Type spi1cfg1;
 	spi1cfg1.Bytes = 0;
 	spi1cfg1.Fields.BIDIMODE = twoLineUni;
-	spi1cfg1.Fields.BR = pclkDivBy256;
+	spi1cfg1.Fields.BR = pclkDivBy8;
 	spi1cfg1.Fields.CPHA = firstEdge;
-	spi1cfg1.Fields.CPOL = clkPolHighIdle;
+	spi1cfg1.Fields.CPOL = clkPolLowIdle;
 	spi1cfg1.Fields.DFF = oneByte;
 	spi1cfg1.Fields.MSTR = spiMaster;
-	spi1cfg1.Fields.SSM = swMgtEnabled;
+	spi1cfg1.Fields.SSM = swMgtDisabled;
 
 	Spi_Config_CR1(SPI_1, spi1cfg1.Bytes);
 }
@@ -187,6 +186,17 @@ void Q_onAssert(char const *module, int loc)
 	(void)module;
 	(void)loc;
 	NVIC_SystemReset();
+}
+
+/*!****************************************************************************
+ * @brief			Delays execution code.
+ * @details		   	Waits for the number of ticks given by the input.
+ * @param[in]      	ticks   Number of CPU cycles wasted.
+ * @return         	void    No output parameters.
+ ******************************************************************************/
+void delay(const uint32_t ticks)
+{
+	for (uint32_t i = 0; i < ticks; i++);
 }
 
 /******************************************************************************

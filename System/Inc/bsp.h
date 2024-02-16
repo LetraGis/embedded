@@ -44,6 +44,7 @@ DECLARATION OF FUNCTIONS
 
 void main_blinky1(void);
 void main_blinky2(void);
+void delay(const uint32_t ticks);
 
 /******************************************************************************
 DECLARATION OF FUNCTION-LIKE MACROS
