@@ -196,7 +196,8 @@ void Q_onAssert(char const *module, int loc)
  ******************************************************************************/
 void delay(const uint32_t ticks)
 {
-	for (uint32_t i = 0; i < ticks; i++);
+	volatile uint32_t i;
+	for (i = 0; i < ticks; i++);
 }
 
 /******************************************************************************

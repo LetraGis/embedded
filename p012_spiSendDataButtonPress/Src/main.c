@@ -35,7 +35,7 @@ int main(void)
     {
     	while(high == Gpio_GetPinStateVal(portc, pin13));
 
-    	delay(50000);
+    	delay(150000);
 
 		Spi_PeripheralEnable(SPI_1);	/* Enabling SPI1 Peripheral. */
 
