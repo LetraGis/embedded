@@ -33,7 +33,13 @@ int main(void)
     while(1)
     {
 		Spi_PeripheralEnable(SPI_1);	/* Enabling SPI1 Peripheral. */
-		for (size_t i = 0; i < 11; i++)
+
+		uint8_t i;
+		/* First, master sends the number of elements 
+		that slave should receive */
+		uint8_t rxDataLen = Spi_ReadData(SPI1);
+
+		for (i = 0; i < rxDataLen; i++)
 		{
 			/* Receive data from DR (blocking call).
 			This function will wait until it receives
@@ -41,7 +47,14 @@ int main(void)
 			rxData[i] = Spi_ReadData(SPI1);
 		}
 
+		/* We need to terminate String with New line. */
+		rxData[i] = '\n';
 		while (1u == Spi_ReadBSYFlag(SPI_1));
+		/* Print it through Software-Trace-Monitoring (STM cell) */
+		for (i = 0; i < rxDataLen; i++)
+		{
+			printf("rx[%d] = %c\n", i, rxData[i]);
+		}
 	
 		Spi_PeripheralDisable(SPI_1);
     }
