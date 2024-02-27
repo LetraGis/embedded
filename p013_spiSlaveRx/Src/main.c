@@ -97,7 +97,7 @@ void Gpio_myInit(void)
 void Spi_myInit(void)
 {
 	SPI1_ENABLE();
-	Spi_Config1Type spi1cfg1;
+	Spi_Cfg1RegType spi1cfg1;
 	spi1cfg1.Bytes = 0;
 	spi1cfg1.Fields.BIDIMODE = twoLineUni;
 	spi1cfg1.Fields.CPHA = firstEdge;
