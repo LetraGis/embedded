@@ -162,7 +162,7 @@ void Spi_InitCallback(void)
 	Spi_Config1Type spi1cfg1;
 	spi1cfg1.Bytes = 0;
 	spi1cfg1.Fields.BIDIMODE = twoLineUni;
-	spi1cfg1.Fields.BR = pclkDivBy8;
+	spi1cfg1.Fields.BR = pclkDivBy256;
 	spi1cfg1.Fields.CPHA = firstEdge;
 	spi1cfg1.Fields.CPOL = clkPolLowIdle;
 	spi1cfg1.Fields.DFF = oneByte;

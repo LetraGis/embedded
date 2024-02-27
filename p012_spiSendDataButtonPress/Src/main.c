@@ -39,7 +39,10 @@ int main(void)
 
 		Spi_PeripheralEnable(SPI_1);	/* Enabling SPI1 Peripheral. */
 
-		/* Send SPI Data, blocking code */
+		uint8_t dataLen = strlen(user_data);
+		Spi_SendData(SPI1, &dataLen, 1u);
+
+		/* Send SPI Data, blocking code */		
 		Spi_SendData(SPI1, (uint8_t*)user_data, strlen(user_data));
 
 		while (1u == Spi_ReadBSYFlag(SPI_1));
