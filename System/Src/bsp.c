@@ -159,7 +159,7 @@ void Gpio_InitCallback(void)
 void Spi_InitCallback(void)
 {	
 	SPI1_ENABLE();
-	Spi_Config1Type spi1cfg1;
+	Spi_Cfg1RegType spi1cfg1;
 	spi1cfg1.Bytes = 0;
 	spi1cfg1.Fields.BIDIMODE = twoLineUni;
 	spi1cfg1.Fields.BR = pclkDivBy256;
