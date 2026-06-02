@@ -63,3 +63,4 @@ p*/.project
 /.metadata/
 .vscode
 /example
+/bazel-*

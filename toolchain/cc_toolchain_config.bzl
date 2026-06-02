@@ -13,7 +13,7 @@ def _impl(ctx):
         struct(name = "gcc", path = compiler_bin_path + "gcc"),
         struct(name = "cpp", path = compiler_bin_path + "g++"),
         struct(name = "ld", path = compiler_bin_path + "ld"),
-        # struct(name = "ld", path = "arm-none-eabi-gcc"), # Using gcc wrapper to link is best practice
+        struct(name = "nm", path = compiler_bin_path + "nm"),
         struct(name = "ar", path = compiler_bin_path + "ar"),
         struct(name = "strip", path = compiler_bin_path + "strip"),
         struct(name = "objcopy", path = compiler_bin_path + "objcopy"),
@@ -80,5 +80,4 @@ def _impl(ctx):
 cc_toolchain_config = rule(
     implementation = _impl,
     attrs = {},
-    provides = [cc_common.CcToolchainInfo],
 )

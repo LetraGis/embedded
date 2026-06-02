@@ -1,1 +1,1 @@
-build --platforms=@platforms//os:none
+build --platforms=//toolchain:stm32f4_platform

@@ -30,3 +30,12 @@ toolchain(
     toolchain = ":arm_gcc_cc_toolchain",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
 )
+
+# Define the actual target platform representing your STM32 hardware
+platform(
+    name = "stm32f4_platform",
+    constraint_values = [
+        "@platforms//cpu:armv7e-m",   # Cortex-M4 fits the ARMv7-M architecture profile
+        "@platforms//os:none",        # Bare-metal
+    ],
+)

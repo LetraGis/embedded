@@ -1,0 +1,75 @@
+# load("@rules_cc//cc", "cc_binary", "cc_library")
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+package(default_visibility = ["//visibility:public"])
+
+# 1. Porting your Assembler settings
+# Core flags (-mcpu, -mthumb, -mfloat-abi, --specs) are handled globally by our toolchain.
+# Here we add the target-specific assembler flags.
+cc_library(
+    name = "startup",
+    srcs = ["startup_stm32f446retx.s"], # Double-check this matches your exact filename
+    copts = [
+        "-x", 
+        "assembler-with-cpp",
+        "-g3",
+        "-DDEBUG",
+        "-c",
+    ],
+)
+
+# 2. Porting your C/C++ Compiler and Linker settings
+cc_binary(
+    name = "firmware.elf",
+    # Glob matches all your C/C++ sources and headers in this folder
+    srcs = glob([
+        # "**/*.c", 
+        "**/*.cpp", 
+        # "**/*.h",
+    ]),
+    
+    # Porting your Include Paths (-I../Inc)
+    # This tells Bazel it's allowed to search your 'Inc' folder for headers
+    includes = ["../Inc", "Inc"], 
+    
+    # Porting your Compiler flags
+    copts = [
+        "-std=gnu11",
+        "-g3",
+        "-O0",
+        # --- Your IDE Defines ---
+        "-DDEBUG",
+        "-DSTM32",
+        "-DSTM32F4",
+        "-DSTM32F446RETx",
+        # --- Code Gen & Metrics ---
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-fstack-usage",
+        # "-fcyclomatic-complexity",
+        "-c",
+    ],
+    
+    # Porting your Linker flags
+    linkopts = [
+        # Tells the toolchain to use your specific linker script file
+        "-T$(location :STM32F446RETX_FLASH.ld)",
+        "--specs=nosys.specs",
+        "-static",
+        "-Wl,--gc-sections",
+        # Generates a map file inside the target output folder
+        "-Wl,-Map=src/firmware.map",
+        # Core Library groups
+        "-Wl,--start-group",
+        "-lc",
+        "-lm",
+        "-Wl,--end-group",
+    ],
+    
+    # Attaching the dependencies (Linker Script and Startup code)
+    deps = [
+        ":STM32F446RETX_FLASH.ld",
+        ":startup",
+    ],
+)
