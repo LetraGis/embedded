@@ -1,0 +1,12 @@
+module(
+    name = "mila",
+    version = "0.1",
+)
+
+# Imports the dependecy rules_cc, which provides the necessary rules for C++ toolchain configuration and usage.
+bazel_dep(name = "rules_cc", version = "0.2.17")
+
+# Imports the dependecy platform, containing definitions for 
+bazel_dep(name = "platforms", version = "1.0.0")
+
+register_toolchains("//toolchain:arm_gcc_toolchain")
